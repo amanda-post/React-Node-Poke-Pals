@@ -1,23 +1,39 @@
-let exampleUser = {
-  username: 'amanda_toast',
-  friendsList: [ 'mslocum', 'ktaing', 'impromptuu', 'egrubbs' ],
+const mongoose = require('mongoose');
+
+const userSchema = mongoose.Schema({
+  username: String,
+  friendsList: [ String ],
+  friendRequests: [ String ],
   pokemonList: [
     {
-      name: 'Bulbasaur',
-      number: 001,
-      types: [ 'grass', 'poison' ],
+      name: String,
+      number: Number,
+      types: [ String ],
       abilities: [ 
         {
-          name: 'overgrow',
-          flavor_text: 'Ups Grass moves in a pinch.'
-          },
-        {
-          name: 'chlorophyll',
-          flavor_text: 'Raises Speed in sunshine.'
+          name: String,
+          flavor_text: String
         }
       ],
-      sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
+      sprites: [ String ]
     }
-  ],
-  pendingMessages: []
-}
+  ]
+});
+
+// Note that giving each user an array of messages: sacrifices space complexity for improved time complexity
+const messageSchema = mongoose.Schema({
+  username: [
+    {
+      receiver: String,
+      sender: String,
+      content: String,
+      timeStamp: Date,
+      id: Number
+    }
+  ]
+});
+
+module.exports = {
+  userSchema,
+  messageSchema
+};
