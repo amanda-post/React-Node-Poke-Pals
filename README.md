@@ -1,4 +1,4 @@
-Pokemon Collector!
+>> Pokemon Collector!
 
 *** Flow of App: ***
 
