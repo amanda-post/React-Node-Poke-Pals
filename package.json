@@ -7,7 +7,7 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "webpack": "webpack -d --watch",
+    "build": "webpack -d --watch",
     "seed": "node database/seed/seeder.js",
     "test": "jest"
   },
