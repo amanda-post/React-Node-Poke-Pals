@@ -1,30 +1,41 @@
->> Pokemon Collector!
+# Pokemon Collector!
 
-*** Flow of App: ***
+*A summer 2019 project*
 
-- User creates an account with a username and password
+## Flow of the App:
 
-- User must log-in with their credentials in order to see their dashboard
+### Creating an account
 
-- User can choose a start Pokemon
+- User creates an account and logs in using OAuth 2.0 authentication.
 
-- User's dashboard will conditionally render their data from the database:
+- The user's personalized dashboard is loaded, and upon first log-in, the user can choose a starter Pokemon.
 
-    - Collected Pokemon
+### Each user dashboard will have:
 
-    - Friends List
+- A button to receive a random Pokemon for free, every 24 hours.
 
-- Every dashboard will have:
+#### A Pokemon Section
 
-    - A button to receive a random Pokemon for free, once a day!
+- Shows the user's pokemon collection, in order by number
 
-    - The user's pokemon list, in order by number [Pokemon.jsx]
+- The user can click a Pokemon and see its type, abilities, etc.
 
-    - The ability to click a Pokemon and see its type, abilities, etc. --> [Pokemon_Viewer]
+#### A Friends Section
 
-    - A "friends" component which has: [Friends]
+- Show list of the user's friends
+
+- Has a component to add friends -- the user can use the input box to add an existing user to their friends list
+
+#### A Messages Section
     
-        - A list of the user's friends [Friends_List]
+- Shows the user the messages that they have sent or received
 
-        - An input box to add an existing user to their friends list [Friends_Adder]
+- Has a component where the user can respond to or send a message to another user
 
+## How To Start The App
+
+1. Clone and/or fork the repository.
+2. In the terminal, run `npm install` in root directory to install dependencies.
+3. In a separate terminal tab, run `npm start` to run the Node.js server.
+4. To fill database with sample data, run `npm run seed` in the original terminal tab.
+5. Webpack can be run using `npm run build`, and the database can be accessed by typing `mongo` into terminal.
