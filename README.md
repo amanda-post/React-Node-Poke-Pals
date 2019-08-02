@@ -1,6 +1,6 @@
 # Pokemon Collector!
 
-*A summer 2019 project*
+*A summer 2019 project~*
 
 ## Flow of the App:
 
