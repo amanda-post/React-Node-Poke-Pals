@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const { userSchema, messageSchema } = require('./schema.js');
+const { userSchema, messageSchema, pokemonSchema } = require('./schema.js');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/Pokemon', { useMongoClient: true })
+mongoose.connect('mongodb://localhost/PokePal', { useMongoClient: true })
   .then( () => {
     console.log('Successfully connected to database') 
   })
@@ -13,8 +13,10 @@ mongoose.connect('mongodb://localhost/Pokemon', { useMongoClient: true })
 
 const User = mongoose.model('User', userSchema);
 const Message = mongoose.model('Message', messageSchema);
+const Pokemon = mongoose.model('Pokemon', pokemonSchema);
 
 module.exports = {
   User,
-  Message
+  Message,
+  Pokemon
 };

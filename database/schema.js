@@ -1,10 +1,15 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
+  uid: String,
   username: String,
   friendsList: [ String ],
-  friendRequests: [ String ],
-  pokemonList: [
+  friendRequests: [ String ]
+});
+
+const pokemonSchema = mongoose.Schema({
+  username: String,
+  pokemon: [
     {
       name: String,
       number: Number,
@@ -18,22 +23,23 @@ const userSchema = mongoose.Schema({
       sprites: [ String ]
     }
   ]
-});
+})
 
 // Note that giving each user an array of messages: sacrifices space complexity for improved time complexity
 const messageSchema = mongoose.Schema({
-  username: [
+  username: String,
+  messages: [
     {
       receiver: String,
       sender: String,
       content: String,
       timeStamp: Date,
-      id: Number
     }
   ]
 });
 
 module.exports = {
   userSchema,
-  messageSchema
+  messageSchema,
+  pokemonSchema
 };
