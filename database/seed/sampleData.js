@@ -10,10 +10,25 @@ const randomizer = (array, maximum) => {
   };
 };
 
-let exampleUser = {
+// Randomly generates a 12-digit id number as a string
+const randomIdGenerator = () => {
+  let id = '';
+  for (let i = 0; i < 12; i++) {
+    id += Math.floor(Math.random() * 10)
+  };
+  return id;
+}
+
+let exampleUserData = {
+  uid: randomIdGenerator(),
   username: 'amanda_toast',
   friendsList: [ 'mslocum', 'ktaing', 'impromptuu', 'egrubbs' ],
-  pokemonList: [
+  friendRequests: [ 'tklee' ]
+}
+
+let examplePokeData = {
+  username: 'amanda_toast',
+  pokemon: [
     {
       name: 'Bulbasaur',
       number: 001,
@@ -30,39 +45,31 @@ let exampleUser = {
       ],
       sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
     }
-  ],
-  friendRequests: [ 'tklee' ]
+  ]
 }
 
-const randomIdGenerator = () => {
-  let id = 1;
-  for (let i = 0; i < 12; i++) {
-    id += Math.floor(Math.random() * 10)
-  };
-  return id;
-}
-
-const createMessage = () => {
+const createMessages = () => {
   const usernames = [ 'amanda_toast', 'mslocum', 'jjklee', 'egrubbs', 'kataing' ];
   const messages = [ 'Just caught a rare poke!', 'This app is pretty cool', 'I cant wait to catch more pokemon!' ]
-  return {
-    to: randomizer(usernames),
-    from: randomizer(usernames),
-    content: randomizer(messages),
-    timeStamp: new Date(),
-    id: randomIdGenerator()
-  };
-};
-
-const exampleMessages = () => {
   let arr = [];
-  for (let i = 0; i < 99; i++) {
-    arr.push(createMessage());
+  for (let i = 0; i <= 20; i++) {
+    arr.push({
+      receiver: randomizer(usernames),
+      sender: randomizer(usernames),
+      content: randomizer(messages),
+      timeStamp: new Date()
+    });
   }
   return arr;
 };
 
+const exampleMessageData = {
+  username: 'amanda_toast',
+  messages: createMessages()
+};
+
 module.exports =  {
-  exampleMessages,
-  exampleUser
+  exampleMessageData,
+  exampleUserData,
+  examplePokeData
 };
