@@ -1,8 +1,8 @@
-const { User, Message } = require('../database/schema.js');
+const { User, Message, Pokemon } = require('../database/index.js');
 const mongoose = require('mongoose');
-const database = require('../database/dbFunctions.js');
+const moment = require('moment');
 
-const controller = {
+const fn = {
   // Checks if username exists; if not, creates a new database entry for that username.
   handleNewUser: (req, res) => {
     let { username } = req.body;
@@ -18,27 +18,27 @@ const controller = {
         res.status(200).send(true);
       });
   },
-
+  
   // Finds all data for user's profile (friends list, pokemon list, etc.)
   getUser: (req, res) => {
     let username = req.params; // check this
     User
-      .find({username: username})
-      .then((data) => {
-        console.log(`Successfully got data for user: ${username}`);
-        res.status(200).send(data);
-      })
-      .catch((err) => {
-        console.log('Error with getUser:', err);
-        res.status(404).send(`Error loading profile for user: ${username}`);
-      });
+    .find({username: username})
+    .then((data) => {
+      console.log(`Successfully got data for user: ${username}`);
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      console.log('Error with getUser:', err);
+      res.status(404).send(`Error loading profile for user: ${username}`);
+    });
   },
-
+  
   // Finds all messages sent or received by the requesting user.
   getMessagesForUser: (req, res) => {
-    let username = req.params;
+    let { username } = req.params;
     Message
-      .find({username: username})
+      .find({ $or: [{sender: username}, {receiver: username}] }).limit(15).sort({timeStamp: 1})
       .then((data) => {
         console.log(`Successfully got messages for username: ${username}`);
         res.status(200).send(data);
@@ -46,6 +46,20 @@ const controller = {
       .catch((err) => {
         console.log('Error getting messages for username:', username, err);
         res.status(404).send(`Error getting messages for username: ${username}`);
+      });
+  },
+
+  getPokemonForUser: (req, res) => {
+    let { username } = req.params;
+    Pokemon
+      .find({username: username})
+      .then((data) => {
+        console.log(`Successfully got pokemon for username: ${username}`);
+        res.status(200).send(data);
+      })
+      .catch((err) => {
+        console.log('Error getting pokemon for username:', username, err);
+        res.status(404).send(`Error getting pokemon for username: ${username}`);
       });
   },
 
@@ -60,8 +74,8 @@ const controller = {
   // Adds message to both user's collection in database.
   handleSentMessage: (req, res) => {
     let { sender, receiver, content } = req.body;
-    database
-      .handleSentMessage(sender, receiver, content)
+    Message
+      .create({sender, receiver, content, timeStamp: moment(new Date()).format('lll')})
       .then((docs) => {
         console.log(`Successfully handled sent message from ${sender} to ${receiver}`);
         res.status(202).send(`Successfully sent message to ${receiver}!`);
@@ -74,7 +88,16 @@ const controller = {
   
   // Removes a message by id from a user's messages
   handleDeleteMessage: (req, res) => {
-    let { user, messageId } = req.params;
+    let { messageId } = req.params;
+    console.log('dis the id', messageId)
+    Message
+      .findOneAndRemove({_id: messageId})
+      .then((doc) => {
+        res.status(200).send(doc)
+      })
+      .catch((err) => {
+        res.status(404).send(err)
+      });
   },
 
   // Puts friend request in receiver's pending requests in database.
@@ -108,4 +131,4 @@ const controller = {
   }
 }
 
-module.exports = controller;
+module.exports = fn;
