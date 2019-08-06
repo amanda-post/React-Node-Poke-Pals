@@ -12,7 +12,7 @@ router.route('/messages')
 router.route('/messages/:username')
   .get(controller.getMessagesForUser)
 
-router.route('/messages/:username/:id')
+router.route('/messages/:messageId')
   .delete(controller.handleDeleteMessage);
 
 /*-----------------------  /api/friendRequests/ -----------------------*/
