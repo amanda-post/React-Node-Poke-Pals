@@ -1,3 +1,4 @@
+const moment = require('moment');
 // Returns either a) the value for a random index in an array, or
 // b) a random integer only (by not passing in an array)
 const randomizer = (array, maximum) => {
@@ -57,16 +58,13 @@ const createMessages = () => {
       receiver: randomizer(usernames),
       sender: randomizer(usernames),
       content: randomizer(messages),
-      timeStamp: new Date()
+      timeStamp: moment(new Date()).format('lll')
     });
   }
   return arr;
 };
 
-const exampleMessageData = {
-  username: 'amanda_toast',
-  messages: createMessages()
-};
+const exampleMessageData = createMessages();
 
 module.exports =  {
   exampleMessageData,
