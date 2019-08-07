@@ -6,7 +6,6 @@ class FriendAdder extends React.Component {
     super(props);
     this.state = {
       friendInput: '',
-      status: null
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,31 +19,29 @@ class FriendAdder extends React.Component {
   };
   
   // Sends a post request to server, adds pending request to requested user's record
-  handleSubmit() {
+  handleSubmit(e) {
     e.preventDefault();
     let users = {
-      sender: CURRENTLY_LOGGED_IN_USER, // TODO
+      sender: this.props.username,
       receiver: this.state.friendInput
     }
-    axios.post('/api/addFriend', users)
+    axios.post('/api/friends', users)
       .then(() => {
-        this.setState({
-          status: `Friend request sent to ${users.receiver}!`
-        });
+        this.props.update();
       })
       .catch((err) => {
-        console.log('Error with sending friend request to: ', users.receiver, err);
       });
   };
 
   render() {
-    <div>
-      <form onSubmit={this.handleSubmit} id="addFriendForm">
-        <input id="addFriendInput" onChange={this.handleInputChange} placeholder="Type username here..."></input>
-        <button id="addFriendButton" className="button">Add To Friends</button>
-      </form>
-      <div id="sentFriendRequest">{this.state.status}</div>
-    </div>
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit} id="addFriendForm">
+          <input id="addFriendInput" onChange={this.handleInputChange} placeholder="Type username here..."></input>
+          <button id="addFriendButton" type="submit">Add To Friends</button>
+        </form>
+      </div>
+    )
   }
 }
 
