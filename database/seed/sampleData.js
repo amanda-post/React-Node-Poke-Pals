@@ -20,47 +20,145 @@ const randomIdGenerator = () => {
   return id;
 }
 
-let exampleUserData = {
-  uid: randomIdGenerator(),
-  username: 'amanda_toast',
-  friendsList: [ 'mslocum', 'ktaing', 'impromptuu', 'egrubbs' ],
-  friendRequests: [ 'tklee' ]
-}
+let exampleUserData = [
+  {
+    uid: randomIdGenerator(),
+    username: 'amanda_toast',
+    friendsList: [ 'mslocum', 'ktaing', 'impromptuu', 'egrubbs', 'jjklee' ],
+    friendRequests: [ 'bananawayne' ]
+  },
+  {
+    uid: randomIdGenerator(),
+    username: 'mslocum',
+    friendsList: [ 'amanda_toast', 'ktaing' ],
+    friendRequests: [ 'bananawayne' ]
+  },
+  {
+    uid: randomIdGenerator(),
+    username: 'ktaing',
+    friendsList: [ 'mslocum', 'amanda_toast', 'egrubbs' ],
+    friendRequests: [ 'bananawayne' ]
+  },
+  {
+    uid: randomIdGenerator(),
+    username: 'impromptuu',
+    friendsList: [ 'amanda_toast', 'egrubbs' ],
+    friendRequests: [ 'bananawayne' ]
+  },
+  {
+    uid: randomIdGenerator(),
+    username: 'egrubbs',
+    friendsList: [ 'amanda_toast', 'ktaing', 'impromptuu' ],
+    friendRequests: [ 'bananawayne' ]
+  },
+  {
+    uid: randomIdGenerator(),
+    username: 'bananawayne',
+    friendsList: [ 'jjklee' ],
+    friendRequests: [  ]
+  },
+  {
+    uid: randomIdGenerator(),
+    username: 'jjklee',
+    friendsList: [ 'amanda_toast', 'bananawayne' ],
+    friendRequests: [ 'bananawayne' ]
+  }
+]
 
-let examplePokeData = {
-  username: 'amanda_toast',
-  pokemon: [
-    {
-      name: 'Bulbasaur',
-      number: 001,
-      types: [ 'grass', 'poison' ],
-      abilities: [ 
-        {
-          name: 'overgrow',
-          flavor_text: 'Ups Grass moves in a pinch.'
-          },
-        {
-          name: 'chlorophyll',
-          flavor_text: 'Raises Speed in sunshine.'
-        }
-      ],
-      sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
-    }
-  ]
-}
+let examplePokeData = [
+  {
+    username: 'amanda_toast',
+    pokemon: [
+      {
+        name: 'Bulbasaur',
+        number: 001,
+        types: [ 'grass', 'poison' ],
+        abilities: [ 
+          {
+            name: 'overgrow',
+            flavor_text: 'Ups Grass moves in a pinch.'
+            },
+          {
+            name: 'chlorophyll',
+            flavor_text: 'Raises Speed in sunshine.'
+          }
+        ],
+        sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
+      }
+    ]
+  },
+  {
+    username: 'egrubbs',
+    pokemon: [
+      {
+        name: 'Bulbasaur',
+        number: 001,
+        types: [ 'grass', 'poison' ],
+        abilities: [ 
+          {
+            name: 'overgrow',
+            flavor_text: 'Ups Grass moves in a pinch.'
+            },
+          {
+            name: 'chlorophyll',
+            flavor_text: 'Raises Speed in sunshine.'
+          }
+        ],
+        sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
+      }
+    ]
+  },
+  {
+    username: 'mslocum',
+    pokemon: [
+      {
+        name: 'Bulbasaur',
+        number: 001,
+        types: [ 'grass', 'poison' ],
+        abilities: [ 
+          {
+            name: 'overgrow',
+            flavor_text: 'Ups Grass moves in a pinch.'
+            },
+          {
+            name: 'chlorophyll',
+            flavor_text: 'Raises Speed in sunshine.'
+          }
+        ],
+        sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
+      }
+    ]
+  },
+]
 
 const createMessages = () => {
-  const usernames = [ 'amanda_toast', 'mslocum', 'jjklee', 'egrubbs', 'kataing' ];
-  const messages = [ 'Just caught a rare poke!', 'This app is pretty cool', 'I cant wait to catch more pokemon!' ]
+  const usernames = [ 'amanda_toast', 'mslocum', 'jjklee', 'egrubbs', 'kataing', 'impromptuu', 'bananawayne' ];
+  const messages = [ 'Just caught a rare poke!', 'This app is pretty cool', 'I cant wait to catch more pokemon!', 'I sure do love SDC!!!!!',
+    'Hack Reactor cohort mates for life <3', 'Pikachu is best pokemon, prove me wrong', 'I liek mudkipzzzz' ]
   let arr = [];
-  for (let i = 0; i <= 20; i++) {
-    arr.push({
-      receiver: randomizer(usernames),
-      sender: randomizer(usernames),
-      content: randomizer(messages),
-      timeStamp: moment(new Date()).format('lll')
-    });
-  }
+    for (let j = 0; j < usernames.length; j++) {
+      let obj = {
+        username: usernames[j],
+        messages: []
+      }
+      for (let i = 0; i < 10; i++) {
+        obj.messages.push({
+          receiver: usernames[j],
+          sender: randomizer(usernames),
+          content: randomizer(messages),
+          timeStamp: moment(new Date()).format('lll')
+        });
+      }
+      for (let i = 0; i < 10; i++) {
+        obj.messages.push({
+          receiver: randomizer(usernames),
+          sender: usernames[j],
+          content: randomizer(messages),
+          timeStamp: moment(new Date()).format('lll')
+        });
+      }
+      arr.push(obj);
+    }
   return arr;
 };
 

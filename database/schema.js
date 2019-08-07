@@ -27,11 +27,15 @@ const pokemonSchema = mongoose.Schema({
 
 // Note that giving each user an array of messages: sacrifices space complexity for improved time complexity
 const messageSchema = mongoose.Schema({
-  receiver: String,
-  sender: String,
-  content: String,
-  timeStamp: Date,
-  read: Boolean
+  username: String,
+  messages: [
+    {
+      receiver: String,
+      sender: String,
+      content: String,
+      timeStamp: Date,
+    }
+  ]
 });
 
 module.exports = {
