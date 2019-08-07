@@ -6,13 +6,13 @@
 
 ### Creating an account
 
-- User creates an account and logs in using OAuth 2.0 authentication.
+- User creates an account and logs in using Google FirebaseOAuth 2.0 authentication, with an e-mail and a password
 
-- The user's personalized dashboard is loaded, and upon first log-in, the user can choose a starter Pokemon.
+- The user's personalized dashboard is loaded, and upon first log-in, the user can choose a starter Pokemon
 
 ### Each user dashboard will have:
 
-- A button to receive a random Pokemon for free, every 24 hours.
+- A button to receive one random pokemon to add to their collection, up to every 24 hours
 
 #### A Pokemon Section
 
@@ -26,11 +26,15 @@
 
 - Has a component to add friends -- the user can use the input box to add an existing user to their friends list
 
+- Ability to delete friends, and message friends from the friends component
+
 #### A Messages Section
     
 - Shows the user the messages that they have sent or received
 
 - Has a component where the user can respond to or send a message to another user
+
+- User has ability to delete messages from their personal inbox
 
 ## How To Start The App
 
