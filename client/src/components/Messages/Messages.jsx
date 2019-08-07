@@ -17,15 +17,14 @@ class Messages extends React.Component {
 
   getMessages() {
     axios
-      .get(`/api/messages/${this.props.user_logged_in}`)
+      .get(`/api/messages/${this.props.username}`)
       .then(({ data }) => {
-        console.log("Successfully got messages!");
         this.setState({
-          messages: data
+          messages: data[0].messages
         });
       })
       .catch(err => {
-        console.log(`Error getting messages for user: ${this.props.user_logged_in}`, err);
+        console.log(`Error getting messages for user: ${this.props.username}`, err);
       });
   }
 
@@ -34,7 +33,7 @@ class Messages extends React.Component {
       <div>
         {this.state.messages.map((message, i) => (
           <MessageListEntry
-            user={this.props.user_logged_in}
+            user={this.props.username}
             sender={message.sender}
             receiver={message.receiver}
             content={message.content}

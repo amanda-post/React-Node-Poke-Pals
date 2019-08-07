@@ -26,7 +26,7 @@ class App extends React.Component {
 
   getUserInfo() {
     axios
-      .get('api/users/295967108669') // REPLACE WITH <user_logged_in> (firebase uid)
+      .get('api/users/739777963964') // REPLACE WITH <user_logged_in> (firebase uid)
       .then(({ data }) => {
         let { username, friendsList, friendRequests } = data;
         this.setState({

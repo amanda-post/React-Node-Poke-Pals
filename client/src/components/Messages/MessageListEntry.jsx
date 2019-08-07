@@ -15,7 +15,7 @@ class MessageListEntry extends React.Component {
 
   handleDelete() {
     axios
-      .delete(`/api/messages/${this.props.messageId}`)
+      .delete(`/api/messages/${this.props.user}/${this.props.messageId}`)
       .then(() => {
         this.props.update();
       })
