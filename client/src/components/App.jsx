@@ -5,7 +5,7 @@ import axios from "axios";
 import Login from "./Login.jsx";
 import Friends from "./Friends/Friends.jsx";
 import Messages from "./Messages/Messages.jsx";
-import Pokemon from "./Pokemon.jsx";
+import Pokemon from "./Pokemon/Pokemon.jsx";
 
 // var user_logged_in = firebase.auth().currentUser;
 
