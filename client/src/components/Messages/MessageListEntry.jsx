@@ -43,6 +43,7 @@ class MessageListEntry extends React.Component {
           show={this.state.showReplyToMessage}
           toggle={this.toggleReplyToMessage}
           user={this.props.user}
+          sender={this.props.sender}
           update={this.props.update}
         />
       </div>

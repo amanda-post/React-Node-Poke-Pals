@@ -15,21 +15,19 @@ class ReplyToMessage extends React.Component {
     e.preventDefault();
     let message = {
       sender: this.props.user, //TODO
-      receiver: "MIKULL", // TODO
+      receiver: this.props.sender, // TODO
       content: this.state.messageInput
     };
     axios
       .post("/api/messages", message)
       .then(() => {
-        // console.log(`Successfully submitted message from ${sender} to ${receiver}: `, message);
         this.props.update();
         this.props.toggle()
       })
       .catch(err => {
-        // console.error(`Error sending message from ${sender} to ${receiver}`, err);
+        console.error(`Error sending message from ${sender} to ${receiver}`, err);
       });
-    }
-  
+  }
 
   handleInputChange(e) {
     this.setState({
