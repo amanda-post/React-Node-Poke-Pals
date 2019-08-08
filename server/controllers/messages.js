@@ -1,4 +1,4 @@
-const Message = require('../../database/index.js');
+const { Message } = require('../../database/index.js');
 const mongoose = require('mongoose');
 
 const messageControlller = {

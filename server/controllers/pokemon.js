@@ -1,4 +1,4 @@
-const Pokemon = require('../../database/index.js');
+const { Pokemon } = require('../../database/index.js');
 const mongoose = require('mongoose');
 
 const pokeController = {
