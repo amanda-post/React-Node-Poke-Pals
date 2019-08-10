@@ -1,6 +1,10 @@
 # Pokemon Collector!
 
-*A summer 2019 project~*
+*Note: as of 8/8/19, I have made this repo public so that my React code can be viewed.*
+
+*I focused on creating best-practice functionality first, before adding CSS to make it 'look pretty'.*
+
+*All functionalities mentioned in commit messages are up and running. I will be implementing CSS, including bootstrap, soon.*
 
 ## Flow of the App:
 
