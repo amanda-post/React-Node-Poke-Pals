@@ -30,10 +30,10 @@ class MessageListEntry extends React.Component {
 
   render() {
     return (
-      <div id="messageListEntry">
-        <span>{`To: ${this.props.receiver}`}</span>
-        <span>{`From: ${this.props.sender}`}</span>
-        <span>{moment(this.props.timeStamp).format("lll")}</span>
+      <div id="messageListEntry" class="py-2 border">
+        <div>{`To: ${this.props.receiver}\n`}</div>
+        <div>{`From: ${this.props.sender}\n`}</div>
+        <div>{`${moment(this.props.timeStamp).format("lll")}\n`}</div>
         <div id="messageContent">{this.props.content}</div>
         <div id="messageButtonsContainer">
           <button id="replyMessageButton" onClick={this.toggleReplyToMessage}>Reply</button>

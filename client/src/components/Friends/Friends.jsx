@@ -6,19 +6,20 @@ import FriendRequestEntry from "./FriendRequestEntry.jsx";
 
 const Friends = (props) => {
   return (
-    <div>
-      <FriendAdder username={props.username} />
-      <div>
-        You have pending friend request(s)!
-        {props.friendRequests.map((user, i) => (
-          <FriendRequestEntry
-            update={props.update}
-            username={props.username}
-            sender={user}
-            key={i}
-          />
-        ))}
-      </div>
+    <div class="col container border">
+      <FriendAdder username={props.username} update={props.update}/>
+      {(props.friendRequests.length > 0) ? (
+        <div>
+          You have pending friend request(s)!
+          {props.friendRequests.map((user, i) => (
+            <FriendRequestEntry
+              update={props.update}
+              username={props.username}
+              sender={user}
+              key={i}
+            />
+          ))}
+        </div>) : null}
       <FriendList username={props.username} update={props.update} friendsList={props.friendsList} />
     </div>
   );

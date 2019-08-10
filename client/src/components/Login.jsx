@@ -61,43 +61,45 @@ class Login extends React.Component {
   render() {
     if (this.state.showSignUp) {
       return (
-        <div>
-          <form id="sign-up-form" type="submit" onSubmit={this.handleSignUp}>
-            Create A Username:
-            <input
-              name="username"
-              required="required"
-              placeholder="Type username here..."
-              onChange={this.handleInputChange}
-            />
-            E-mail:
-            <input
-              name="email"
-              type="email"
-              required="required"
-              placeholder="Type email here..."
-              onChange={this.handleInputChange}
-            />
-            Create A Password:
-            <input
-              name="password"
-              type="password"
-              required="required"
-              pattern=".{6,}"
-              required
-              title="6 characters minimum"
-              placeholder="Type password here..."
-              onChange={this.handleInputChange}
-            />
-            <button type="submit" id="sign-up-button">
-              Create Account
-            </button>
-          </form>
+        <div class="container">
+          <div class="row justify-content-center"> 
+            <form id="sign-up-form" type="submit" onSubmit={this.handleSignUp}>
+              Create A Username:
+              <input
+                name="username"
+                required="required"
+                placeholder="Type username here..."
+                onChange={this.handleInputChange}
+              />
+              E-mail:
+              <input
+                name="email"
+                type="email"
+                required="required"
+                placeholder="Type email here..."
+                onChange={this.handleInputChange}
+              />
+              Create A Password:
+              <input
+                name="password"
+                type="password"
+                required="required"
+                pattern=".{6,}"
+                required
+                title="6 characters minimum"
+                placeholder="Type password here..."
+                onChange={this.handleInputChange}
+              />
+              <button type="submit" id="sign-up-button">
+                Create Account
+              </button>
+            </form>
+          </div>
         </div>
       );
     } else {
       return (
-        <div>
+        <div class="row justify-content-center">
           <form id="sign-in-form" type="submit" onSubmit={this.handleSignIn}>
             E-mail:
             <input

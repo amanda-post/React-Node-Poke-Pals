@@ -21,6 +21,7 @@ class FriendAdder extends React.Component {
   // Sends a post request to server, adds pending request to requested user's record
   handleSubmit(e) {
     e.preventDefault();
+    e.target.reset();
     let users = {
       sender: this.props.username,
       receiver: this.state.friendInput
@@ -35,7 +36,7 @@ class FriendAdder extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class="row justify-content-around border p-1">
         <form onSubmit={this.handleSubmit} id="addFriendForm">
           <input id="addFriendInput" onChange={this.handleInputChange} placeholder="Type username here..."></input>
           <button id="addFriendButton" type="submit">Add To Friends</button>

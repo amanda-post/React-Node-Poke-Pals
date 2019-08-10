@@ -59,14 +59,18 @@ class App extends React.Component {
     return (
       <div>
         <Login />
-        <Friends
-          username={this.state.username}
-          friendsList={this.state.friendsList}
-          friendRequests={this.state.friendRequests}
-          update={this.getUserInfo}
-        />
-        <Messages username={this.state.username} />
-        <Pokemon />
+        <div class="container-fluid">
+          <div class="row justify-content-md-center">
+            <Friends
+              username={this.state.username}
+              friendsList={this.state.friendsList}
+              friendRequests={this.state.friendRequests}
+              update={this.getUserInfo}
+            />
+            <Pokemon username={this.state.username}/>
+            <Messages username={this.state.username} />
+          </div>
+        </div>
       </div>
     );
   }

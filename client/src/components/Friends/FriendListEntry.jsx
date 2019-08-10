@@ -18,10 +18,10 @@ const FriendListEntry = (props) => {
   };
 
   return (
-    <div>
+    <div class="row justify-content-around">
       {props.friend}
       <button onClick={deleteFriend}>Unfriend</button>
-      <button>Send a message</button>
+      {/* <button>Send a message</button> */}
     </div>
   );
 };

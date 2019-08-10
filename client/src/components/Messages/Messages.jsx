@@ -30,7 +30,7 @@ class Messages extends React.Component {
 
   render() {
     return (
-      <div>
+      <div class="col">
         {this.state.messages.map((message, i) => (
           <MessageListEntry
             user={this.props.username}
