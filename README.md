@@ -2,15 +2,15 @@
 
 *Note: as of 8/8/19, I have made this repo public so that my React code can be viewed.*
 
-*I focused on creating best-practice functionality first, before adding CSS to make it 'look pretty'.*
+*I focused on creating best-practice functionality first, and have added some minimal bootstrap/CSS thusfar.*
 
-*All functionalities mentioned in commit messages are up and running. I will be implementing CSS, including bootstrap, soon.*
+*All functionalities mentioned in commit messages are up and running.*
 
 ## Flow of the App:
 
 ### Creating an account
 
-- User creates an account and logs in using Google FirebaseOAuth 2.0 authentication, with an e-mail and a password
+- User creates an account and logs in using Passport.js local-authentication, with a username and a password
 
 - The user's personalized dashboard is loaded, and upon first log-in, the user can choose a starter Pokemon
 
