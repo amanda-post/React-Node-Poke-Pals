@@ -71,7 +71,7 @@ let examplePokeData = [
     pokemon: [
       {
         name: 'Bulbasaur',
-        number: 001,
+        number: '001',
         types: [ 'grass', 'poison' ],
         abilities: [ 
           {
@@ -83,8 +83,40 @@ let examplePokeData = [
             flavor_text: 'Raises Speed in sunshine.'
           }
         ],
-        sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
-      }
+        sprites: { front_default: 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' }
+      },
+      {
+        name: 'Ivysaur',
+        number: '002',
+        types: [ 'grass', 'poison' ],
+        abilities: [ 
+          {
+            name: 'overgrow',
+            flavor_text: 'Ups Grass moves in a pinch.'
+            },
+          {
+            name: 'chlorophyll',
+            flavor_text: 'Raises Speed in sunshine.'
+          }
+        ],
+        sprites: { front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png' }
+      },
+      {
+        name: 'Ivysaur',
+        number: '002',
+        types: [ 'grass', 'poison' ],
+        abilities: [ 
+          {
+            name: 'overgrow',
+            flavor_text: 'Ups Grass moves in a pinch.'
+            },
+          {
+            name: 'chlorophyll',
+            flavor_text: 'Raises Speed in sunshine.'
+          }
+        ],
+        sprites: { front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png' }
+      },
     ]
   },
   {
@@ -92,7 +124,7 @@ let examplePokeData = [
     pokemon: [
       {
         name: 'Bulbasaur',
-        number: 001,
+        number: '001',
         types: [ 'grass', 'poison' ],
         abilities: [ 
           {
@@ -104,7 +136,7 @@ let examplePokeData = [
             flavor_text: 'Raises Speed in sunshine.'
           }
         ],
-        sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
+        sprites: { front_default: 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' }
       }
     ]
   },
@@ -113,7 +145,7 @@ let examplePokeData = [
     pokemon: [
       {
         name: 'Bulbasaur',
-        number: 001,
+        number: '001',
         types: [ 'grass', 'poison' ],
         abilities: [ 
           {
@@ -125,7 +157,7 @@ let examplePokeData = [
             flavor_text: 'Raises Speed in sunshine.'
           }
         ],
-        sprites: [ 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' ]
+        sprites: { front_default: 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/192px-001Bulbasaur.png' }
       }
     ]
   },
