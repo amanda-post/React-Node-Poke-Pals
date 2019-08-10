@@ -1,4 +1,3 @@
-const moment = require('moment');
 // Returns either a) the value for a random index in an array, or
 // b) a random integer only (by not passing in an array)
 const randomizer = (array, maximum) => {
@@ -11,54 +10,38 @@ const randomizer = (array, maximum) => {
   };
 };
 
-// Randomly generates a 12-digit id number as a string
-const randomIdGenerator = () => {
-  let id = '';
-  for (let i = 0; i < 12; i++) {
-    id += Math.floor(Math.random() * 10)
-  };
-  return id;
-}
-
-let exampleUserData = [
+let exampleFriendData = [
   {
-    uid: randomIdGenerator(),
     username: 'amanda_toast',
-    friendsList: [ 'mslocum', 'ktaing', 'impromptuu', 'egrubbs', 'jjklee' ],
-    friendRequests: [ 'bananawayne' ]
+    friendsList: [ 'mslocum', 'ktaing' ],
+    friendRequests: [ 'bananawayne','impromptuu', 'egrubbs', 'jjklee' ]
   },
   {
-    uid: randomIdGenerator(),
     username: 'mslocum',
     friendsList: [ 'amanda_toast', 'ktaing' ],
     friendRequests: [ 'bananawayne' ]
   },
   {
-    uid: randomIdGenerator(),
     username: 'ktaing',
     friendsList: [ 'mslocum', 'amanda_toast', 'egrubbs' ],
     friendRequests: [ 'bananawayne' ]
   },
   {
-    uid: randomIdGenerator(),
     username: 'impromptuu',
-    friendsList: [ 'amanda_toast', 'egrubbs' ],
+    friendsList: [ 'egrubbs' ],
     friendRequests: [ 'bananawayne' ]
   },
   {
-    uid: randomIdGenerator(),
     username: 'egrubbs',
-    friendsList: [ 'amanda_toast', 'ktaing', 'impromptuu' ],
+    friendsList: [ 'ktaing', 'impromptuu' ],
     friendRequests: [ 'bananawayne' ]
   },
   {
-    uid: randomIdGenerator(),
     username: 'bananawayne',
     friendsList: [ 'jjklee' ],
     friendRequests: [  ]
   },
   {
-    uid: randomIdGenerator(),
     username: 'jjklee',
     friendsList: [ 'amanda_toast', 'bananawayne' ],
     friendRequests: [ 'bananawayne' ]
@@ -178,7 +161,7 @@ const createMessages = () => {
           receiver: usernames[j],
           sender: randomizer(usernames),
           content: randomizer(messages),
-          timeStamp: moment(new Date()).format('lll')
+          timeStamp: new Date()
         });
       }
       for (let i = 0; i < 10; i++) {
@@ -186,7 +169,7 @@ const createMessages = () => {
           receiver: randomizer(usernames),
           sender: usernames[j],
           content: randomizer(messages),
-          timeStamp: moment(new Date()).format('lll')
+          timeStamp: new Date()
         });
       }
       arr.push(obj);
@@ -198,6 +181,6 @@ const exampleMessageData = createMessages();
 
 module.exports =  {
   exampleMessageData,
-  exampleUserData,
+  exampleFriendData,
   examplePokeData
 };

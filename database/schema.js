@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
-  uid: String,
+  username: String,
+  password: String
+});
+
+const friendSchema = mongoose.Schema({
   username: String,
   friendsList: [ String ],
   friendRequests: [ String ]
@@ -20,7 +24,7 @@ const pokemonSchema = mongoose.Schema({
           flavor_text: String
         }
       ],
-      sprites: [ String ]
+      sprites: Object
     }
   ]
 })
@@ -40,6 +44,7 @@ const messageSchema = mongoose.Schema({
 
 module.exports = {
   userSchema,
+  friendSchema,
   messageSchema,
   pokemonSchema
 };

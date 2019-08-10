@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-const { Message, User, Pokemon } = require('../index.js')
-const { exampleUserData, exampleMessageData, examplePokeData } = require('./sampleData.js');
+const { Message, Friend, Pokemon } = require('../index.js')
+const { exampleFriendData, exampleMessageData, examplePokeData } = require('./sampleData.js');
 
 const seeder = () => {
   Message
     .create(exampleMessageData)
     .then(() => { 
       console.log('Successfully seeded messageData')
-      User
-        .create(exampleUserData)
+      Friend
+        .create(exampleFriendData)
         .then(() => {
-          console.log('Successfully seeded userData')
+          console.log('Successfully seeded friendData')
         })
     })
     .then(() => {
