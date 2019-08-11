@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const hash = require('../hash.js');
 
 const userSchema = mongoose.Schema({
   username: String,
