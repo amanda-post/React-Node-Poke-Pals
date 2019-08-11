@@ -1,14 +1,13 @@
 import React from "react";
 import axios from "axios";
-import firebase from "../../../init-firebase.js";
+import hash from "../../../../hash.js";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
       username: "",
+      password: "",
       showSignUp: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -24,31 +23,34 @@ class Login extends React.Component {
     });
   }
 
-  // checks user's inputs with firebase server to log the user in
+  // checks user's inputs with auth to log the user in
   handleSignIn(e) {
     e.preventDefault();
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(userCredential => {})
-      .catch(error => {
-        console.log(error);
-      });
+    let signInInfo = {
+      username: this.state.username,
+      password: hash(this.state.password)
+    }
+    axios
+      .post('/api/users/signin', signInInfo)
+      .then(({data}) => {
+        this.props.update(data)
+      })
+      .catch((err) => console.log(err))
   }
 
-  // checks if the proposed username exists; if not, creates an account in DB and with firebase
+  // checks if the proposed username exists; if not, creates an account in DB
   handleSignUp(e) {
     e.preventDefault();
-    // check if the username already exists in mongoDB
-
-    // if it does not, create the account with firebase, and then add it to mongoDB
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .then(userCredential => {})
-      .catch(error => {
-        console.log(error);
-      });
+    let signUpInfo = {
+      username: this.state.username,
+      password: hash(this.state.password)
+    }
+    axios
+      .post('/api/user/signup', signUpInfo)
+      .then(({data}) => {
+        this.props.setCurrentUser(data)
+      })
+      .catch(err => console.log(`Error making account for  for user: ${username}.`, err))
   }
 
   // sets state to true in order to render the sign-UP form rather than the sign-IN form
@@ -67,16 +69,9 @@ class Login extends React.Component {
               Create A Username:
               <input
                 name="username"
+                type="text"
                 required="required"
                 placeholder="Type username here..."
-                onChange={this.handleInputChange}
-              />
-              E-mail:
-              <input
-                name="email"
-                type="email"
-                required="required"
-                placeholder="Type email here..."
                 onChange={this.handleInputChange}
               />
               Create A Password:
@@ -101,12 +96,12 @@ class Login extends React.Component {
       return (
         <div class="row justify-content-center">
           <form id="sign-in-form" type="submit" onSubmit={this.handleSignIn}>
-            E-mail:
+            Username:
             <input
-              name="email"
-              type="email"
+              name="username"
+              type="text"
               required="required"
-              placeholder="Type email here..."
+              placeholder="Enter username here..."
               onChange={this.handleInputChange}
             />
             Password:
@@ -114,7 +109,7 @@ class Login extends React.Component {
               name="password"
               type="password"
               required="required"
-              placeholder="Type password here..."
+              placeholder="Enter password here..."
               onChange={this.handleInputChange}
             />
             <button type="submit" id="sign-in-button">

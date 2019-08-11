@@ -1,78 +1,44 @@
 import React from "react";
 import axios from "axios";
-// import firebase from '../../../init-firebase.js';
 
-import Login from "./Login.jsx";
+import Login from "./FrontPage/Login.jsx";
 import Friends from "./Friends/Friends.jsx";
 import Messages from "./Messages/Messages.jsx";
 import Pokemon from "./Pokemon/Pokemon.jsx";
-
-// var user_logged_in = firebase.auth().currentUser;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "amanda_toast", //todo
-      friendsList: [],
-      friendRequests: []
+      username: null
     };
-    this.getUserInfo = this.getUserInfo.bind(this);
+    this.setCurrentUser = this.setCurrentUser.bind(this);
   }
 
-  componentWillMount() {
-    this.getUserInfo();
-  }
-
-  getUserInfo() {
-    axios
-      .get('api/users/739777963964') // REPLACE WITH <user_logged_in> (firebase uid)
-      .then(({ data }) => {
-        let { username, friendsList, friendRequests } = data;
-        this.setState({
-          username,
-          friendsList,
-          friendRequests
-        });
-      })
-      .catch(err => {
-        console.log("Error getting user data", err);
-      });
+  setCurrentUser(user) {
+    this.setState({
+      username: user
+    });
   }
 
   render() {
-    // if (!user) {
-    //   return (
-    //   <div>
-    //     <Login />
-    //   </div>
-    //   )
-    // } else {
-    //   return (
-    //     <div>
-    //       <Friends />
-    //       <Messages />
-    //       <Pokemon />
-    //     </div>
-    //   )
-    // }
-    return (
+    if (!this.state.username) {
+      return (
       <div>
-        <Login />
+        <Login update={this.setCurrentUser}/>
+      </div>
+      )
+    } else {
+      return (
         <div class="container-fluid">
           <div class="row justify-content-md-center">
-            <Friends
-              username={this.state.username}
-              friendsList={this.state.friendsList}
-              friendRequests={this.state.friendRequests}
-              update={this.getUserInfo}
-            />
+            <Friends username={this.state.username}/>
             <Pokemon username={this.state.username}/>
-            <Messages username={this.state.username} />
+            <Messages username={this.state.username}/>
           </div>
         </div>
-      </div>
-    );
+      )
+    }
   }
 }
 
