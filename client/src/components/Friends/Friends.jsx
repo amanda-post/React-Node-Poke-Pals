@@ -4,25 +4,54 @@ import FriendList from "./FriendList.jsx";
 import FriendAdder from "./FriendAdder.jsx";
 import FriendRequestEntry from "./FriendRequestEntry.jsx";
 
-const Friends = (props) => {
-  return (
-    <div class="col container border">
-      <FriendAdder username={props.username} update={props.update}/>
-      {(props.friendRequests.length > 0) ? (
-        <div>
-          You have pending friend request(s)!
-          {props.friendRequests.map((user, i) => (
-            <FriendRequestEntry
-              update={props.update}
-              username={props.username}
-              sender={user}
-              key={i}
-            />
-          ))}
-        </div>) : null}
-      <FriendList username={props.username} update={props.update} friendsList={props.friendsList} />
-    </div>
-  );
+class Friends extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      friendsList: [],
+      friendRequests: []
+    }
+    this.getFriendInfo = this.getFriendInfo.bind(this);
+  }
+
+  componentWillMount() {
+    this.getFriendInfo();
+  }
+
+  getFriendInfo() {
+    axios
+      .get(`/api/friends/${this.props.username}`)
+      .then(({data}) => {
+        this.setState({
+          friendsList: data.friendsList,
+          friendRequests: data.friendRequests
+        })
+      })
+      .catch(err => console.log(`Error getting friend data for user: ${this.props.username}.`, err))
+  }
+
+  render() {
+    let { username } = this.props;
+    let { friendsList, friendRequests } = this.state;
+    return (
+      <div class="col container border">
+        <FriendAdder username={username} update={this.getFriendInfo}/>
+        {(friendRequests.length > 0) ? (
+          <div>
+            {(friendRequests.length === 1) ? ('You have a pending friend request!') : ('You have pending friend requests!')}
+            {friendRequests.map((user, i) => (
+              <FriendRequestEntry
+                update={this.getFriendInfo}
+                username={username}
+                sender={user}
+                key={i}
+              />
+            ))}
+          </div>) : null}
+        <FriendList username={username} update={this.getFriendInfo} friendsList={friendsList} />
+      </div>
+    );
+  }
 };
 
 export default Friends;

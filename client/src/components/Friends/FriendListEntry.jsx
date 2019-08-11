@@ -18,7 +18,7 @@ const FriendListEntry = (props) => {
   };
 
   return (
-    <div class="row justify-content-around">
+    <div class="row justify-content-around py-1">
       {props.friend}
       <button onClick={deleteFriend}>Unfriend</button>
       {/* <button>Send a message</button> */}

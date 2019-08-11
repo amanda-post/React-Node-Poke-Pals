@@ -9,14 +9,16 @@ const FriendRequestEntry = (props) => {
       response: e.target.dataset.response
     };
     axios
-      .put(`/api/friends/`, data)
+      .put('/api/friends/', data)
       .then(() => {
         props.update();
       })
-      .catch();
+      .catch((err) => {
+        console.log("Error handling response to friend request", err)
+      });
   }
 
-  return(
+  return (
     <div>
       <span>{props.sender}</span>
       <button name={props.sender} data-response="accept" onClick={handleResponseToFriendRequest}>Accept</button>
