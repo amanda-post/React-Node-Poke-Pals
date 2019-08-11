@@ -1,5 +1,6 @@
 const { Pokemon } = require('../../database/index.js');
 const mongoose = require('mongoose');
+const axios = require('axios');
 
 const pokeController = {
   // retrieves the list of pokemon a user has collected
@@ -24,6 +25,11 @@ const pokeController = {
   
     // add pokemon to user's collection in database
   },
+
+  addPokemonToList: (req, res) => {
+    axios
+      .get(`https://pokeapi.co/api/v2/${1}`)
+  }
 };
 
 module.exports = pokeController;
