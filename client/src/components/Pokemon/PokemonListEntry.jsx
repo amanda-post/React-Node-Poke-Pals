@@ -5,7 +5,7 @@ const PokemonListEntry = (props) => {
   return(
     <div>
       {`${name} - ${number}`}
-      <img src={sprites[0]} alt={`pokemon-${props.index}`}></img>
+      <img src={sprites.front_default} alt={`pokemon-${props.index}`}></img>
     </div>
   )
 }

@@ -23,14 +23,14 @@ class Pokemon extends React.Component {
           pokemon: data[0].pokemon
         })
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(`Error getting pokemon for user: ${this.props.username}.`, err));
   }
 
   render() {
     return(
       <div class="col container border">
         This is the Pokemon div!
-        <PokemonList poke={this.state.pokemon}/>
+        <PokemonList pokes={this.state.pokemon}/>
       </div>
     )
   }
