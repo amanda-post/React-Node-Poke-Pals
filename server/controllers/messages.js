@@ -8,12 +8,12 @@ const messageControlller = {
     Message
       .find({username: username}, 'messages').limit(15).sort({timeStamp: -1})
       .then((data) => {
-        console.log(`Successfully got messages for username: ${username}`);
         res.status(200).send(data);
+        console.log(`Successfully got messages for user: ${username}.`);
       })
       .catch((err) => {
-        console.log('Error getting messages for username:', username, err);
-        res.status(404).send(`Error getting messages for username: ${username}`);
+        res.status(404).send(err);
+        console.log(`Error getting messages for user: ${username}.`, err);
       });
   },
 

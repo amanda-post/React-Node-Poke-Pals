@@ -23,9 +23,7 @@ class Messages extends React.Component {
           messages: data[0].messages
         });
       })
-      .catch(err => {
-        console.log(`Error getting messages for user: ${this.props.username}`, err);
-      });
+      .catch(err => console.log(`Error getting messages for user: ${this.props.username}.`, err));
   }
 
   render() {
